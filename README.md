@@ -6,8 +6,7 @@ Main goal is to have all useful commands, tips/tricks, ... here by the end of th
 
 ## FIRST STEPS
 1. Make sure you have [node.js](https://nodejs.org/en) installed.
-2.  Install [wscat](https://www.npmjs.com/package/wscat) package.
-    Or by this command
+2.  Install this [wscat](https://www.npmjs.com/package/wscat) package or use following command:
     ```bash
     npm install -g wscat 
     ```
