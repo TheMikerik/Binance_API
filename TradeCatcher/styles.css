@@ -1,0 +1,7 @@
+body {
+    background-color: white;
+}
+.VolumeChart{
+    position: fixed;
+    left: 50%;
+}

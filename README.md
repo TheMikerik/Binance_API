@@ -13,3 +13,5 @@ Main goal is to have all useful commands, tips/tricks, ... here by the end of th
 
 ## USEFUL LINKS
 [WSS - Web Socket Streams](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)
+[Lightweight charts web](https://www.tradingview.com/lightweight-charts/)
+[Lightweight charts github](https://github.com/tradingview/lightweight-charts)
