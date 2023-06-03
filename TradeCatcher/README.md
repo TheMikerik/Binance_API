@@ -31,7 +31,6 @@ Output of this web socket is following:
 *  "e": "kline",         // Event type
 *  "E": 1672515782136,   // Event time
 *  "s": "BNBBTC",        // Symbol
-*  "k": {
 *    "t": 1672515780000, // Kline start time
 *    "T": 1672515839999, // Kline close time
 *    "s": "BNBBTC",      // Symbol
@@ -49,4 +48,3 @@ Output of this web socket is following:
 *    "V": "500",         // Taker buy base asset volume
 *    "Q": "0.500",       // Taker buy quote asset volume
 *    "B": "123456"       // Ignore
-*  }
