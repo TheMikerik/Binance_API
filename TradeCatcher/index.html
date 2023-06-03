@@ -8,45 +8,72 @@
     <body>
         <h1>BTC trades with volume over 0.3 btc</h1>
 
-        <div id="volumeChart" class="volumeChart"></div>
+        <section class="volumeChart" id="volumeChart">
+            <h3 id="currentPrice" class="price">Current price is NULL</h3>
+            <div id="chart" class="chart"></div>
+        </section>
 
-        <h3 id="allTradeCounter">0 trades tottaly captured</h3>
-        <h3 id="catchedTradeCounter">0 catched trades</h3>
-        <h3 id="biggestTrade">Biggest trade in current section:</h3>
+        <section class="infoBar" id="infoBar">
+            <h3 id="allTradeCounter">0 trades tottaly captured</h3>
+            <h3 id="catchedTradeCounter">0 catched trades</h3>
+            <h3 id="biggestTrade">Biggest trade in current section:</h3>
+        </section>
 
-        <div id="tradeDiv"></div>
+        <div id="tradeDiv">
+        </div>
+
 
 
         <script>
             var binanceSocket = new WebSocket("wss://stream.binance.com:9443/ws/btcusdt@trade");
-            var trades = document.getElementById('tradeDiv')
-            var allTradeCounter = document.getElementById('allTradeCounter')
+            var trades = document.getElementById('tradeDiv');
+            var allTradeCounter = document.getElementById('allTradeCounter');
             var allTradeCount = 0;
-            var catchedTradesCounter = document.getElementById('catchedTradeCounter')
+            var catchedTradesCounter = document.getElementById('catchedTradeCounter');
             var catchedTradeCount = 0;
-            var biggestTrade = document.getElementById('biggestTrade')
+            var biggestTrade = document.getElementById('biggestTrade');
             var biggestTradeFloat = 0;
+            var curretnPrice = document.getElementById('currentPrice');
+            var curPrice = 0;
+            var tradeLog = document.getElementById('tradeDiv');
+            var maxTradeLogs = 20;
+            var tradeLogEntries = [];
 
-            binanceSocket.onmessage = function (out){
-                console.log(out.data);
+            binanceSocket.onmessage = function(out) {
+            var messages = JSON.parse(out.data);
+            var volume = parseFloat(messages.q);
+            var curPrice = parseFloat(messages.p).toFixed(2);
 
-                var messages = JSON.parse(out.data)
-                var volume = parseFloat(messages.q)
-                
-                if ( volume > biggestTradeFloat){
-                    biggestTradeFloat = volume;
-                    biggestTrade.textContent = "Biggest trade in current section: " + biggestTradeFloat + "btc";
-                }
-                if ( volume > 0.3) {
-                    trades.append(messages.q + " BTC trade has been opened on the price of " + messages.p)
-                    trades.appendChild(document.createElement("br"))
-                    catchedTradeCount++;
-                    catchedTradesCounter.textContent = catchedTradeCount + " catched trades"
-                }
-                allTradeCount++;
-                allTradeCounter.textContent = allTradeCount + " trades totally captured"
+            if (volume > biggestTradeFloat) {
+                biggestTradeFloat = volume;
+                biggestTrade.textContent = "Biggest trade in current section: " + biggestTradeFloat + "btc";
             }
+            if (volume > 0.0001) {
+                if (tradeLogEntries.length >= maxTradeLogs) {
+                tradeLogEntries.shift();
+                }
+                var tradeEntry = messages.q + " BTC trade has been opened on the price of " + curPrice;
+                tradeLogEntries.push(tradeEntry);
 
+                // Clear the trade log
+                tradeLog.innerHTML = "<br>";
+
+                // Append the latest trade log entries
+                for (var i = tradeLogEntries.length - 1; i >= 0; i--) {
+                var tradeLogEntry = tradeLogEntries[i];
+                var tradeLogItem = document.createElement("div");
+                tradeLogItem.textContent = tradeLogEntry;
+                tradeLog.prepend(tradeLogItem); // Prepend the trade log entry to show the latest first
+                }
+
+                catchedTradeCount++;
+                catchedTradesCounter.textContent = catchedTradeCount + " catched trades";
+            }
+            allTradeCount++;
+            allTradeCounter.textContent = allTradeCount + " trades totally captured";
+
+            curretnPrice.textContent = "Current price is " + curPrice;
+            };
         </script>
         <script src="chart.js"></script>
     </body>

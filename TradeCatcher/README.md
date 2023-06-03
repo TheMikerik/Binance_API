@@ -28,9 +28,9 @@ wscat -c wss://stream.binance.com:9443/ws/btcusdt@kline_5m
 ```
 Output of this web socket is following:
 
-*  "e": "kline",         // Event type
-*  "E": 1672515782136,   // Event time
-*  "s": "BNBBTC",        // Symbol
+*    "e": "kline",         // Event type
+*    "E": 1672515782136,   // Event time
+*    "s": "BNBBTC",        // Symbol
 *    "t": 1672515780000, // Kline start time
 *    "T": 1672515839999, // Kline close time
 *    "s": "BNBBTC",      // Symbol

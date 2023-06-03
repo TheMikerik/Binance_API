@@ -1,7 +1,26 @@
 body {
     background-color: white;
+    color: black;
+    font-family: 'Dosis', sans-serif;
 }
 .VolumeChart{
     position: fixed;
     left: 50%;
+    font-size: 20px;
+    border: 5px solid black;
+    border-radius: 25px;
+    padding: 15px;
+    overflow: hidden;
+    display: block;
+}
+.VolumeChart .price{
+    position: absolute;
+    font-size: 30px;
+    color: red;
+    z-index: 5;
+    display: block;
+}
+.VolumeChart .chart{
+    position: absolute;
+    display: block;
 }
