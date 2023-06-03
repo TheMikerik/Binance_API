@@ -48,7 +48,7 @@
                 biggestTradeFloat = volume;
                 biggestTrade.textContent = "Biggest trade in current section: " + biggestTradeFloat + "btc";
             }
-            if (volume > 0.0001) {
+            if (volume > 0.3) {
                 if (tradeLogEntries.length >= maxTradeLogs) {
                 tradeLogEntries.shift();
                 }
