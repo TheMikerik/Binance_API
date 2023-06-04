@@ -4,36 +4,36 @@ var chart = LightweightCharts.createChart(document.getElementById('volumeChart')
 	layout: {
 		background: {
             type: 'solid',
-            color: '#000000',
+            color: '#E8EDDF',
         },
-		textColor: 'rgba(255, 255, 255, 0.9)',
+		textColor: 'rgba(0, 0, 0, 0.9)',
 	},
 	grid: {
 		vertLines: {
-			color: 'rgba(197, 203, 206, 0.5)',
+			color: 'rgba(0, 0, 0, 0.5)',
 		},
 		horzLines: {
-			color: 'rgba(197, 203, 206, 0.5)',
+			color: 'rgba(0, 0, 0, 0.5)',
 		},
 	},
 	crosshair: {
 		mode: LightweightCharts.CrosshairMode.Normal,
 	},
 	rightPriceScale: {
-		borderColor: 'rgba(197, 203, 206, 0.8)',
+		borderColor: 'rgba(0, 0, 0, 0.8)',
 	},
 	timeScale: {
-		borderColor: 'rgba(197, 203, 206, 0.8)',
+		borderColor: 'rgba(0, 0, 0, 0.8)',
 	},
 });
 
 var candleSeries = chart.addCandlestickSeries({
-  upColor: 'rgba(255, 144, 0, 1)',
-  downColor: '#000',
-  borderDownColor: 'rgba(255, 144, 0, 1)',
-  borderUpColor: 'rgba(255, 144, 0, 1)',
-  wickDownColor: 'rgba(255, 144, 0, 1)',
-  wickUpColor: 'rgba(255, 144, 0, 1)',
+  upColor: 'rgba(0, 255, 0, 1)',
+  downColor: 'rgba(255, 0, 0, 1)',
+  borderDownColor: 'rgba(50, 0, 0, 1)',
+  borderUpColor: 'rgba(0, 50, 0, 1)',
+  wickDownColor: 'rgba(255, , 0, 1)',
+  wickUpColor: 'rgba(0, 255, 0, 1)',
 });
 
 var binanceSocket = new WebSocket("wss://stream.binance.com:9443/ws/btcusdt@kline_1s");

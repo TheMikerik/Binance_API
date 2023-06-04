@@ -1,13 +1,26 @@
+/* https://coolors.co/palette/cfdbd5-e8eddf-f5cb5c-698C7A-333533 */
+
 body {
-    background-color: white;
-    color: black;
+    background-color: #333533;
     font-family: 'Dosis', sans-serif;
+    color: #242423
 }
-.VolumeChart{
+h1 {
     position: fixed;
     left: 50%;
+    transform: translate(-50%);
+    color: #698C7A;
+    font-size: 45px;
+  }
+.VolumeChart{
+    position: fixed;
+    height: 400px;
+    width: 46%;
+    top: 120px;
+    right: 1%;
     font-size: 20px;
-    border: 5px solid black;
+    border: 5px solid #698C7A;
+    background-color: #E8EDDF;
     border-radius: 25px;
     padding: 15px;
     overflow: hidden;
@@ -16,11 +29,42 @@ body {
 .VolumeChart .price{
     position: absolute;
     font-size: 30px;
-    color: red;
+    color: #242423;
     z-index: 5;
     display: block;
 }
 .VolumeChart .chart{
     position: absolute;
+    display: block;
+}
+
+
+.infoBar{
+    position: fixed;
+    height: 400px;
+    width: 46%;
+    top: 120px;
+    left: 1%;
+    font-size: 20px;
+    border: 5px solid #698C7A;
+    background-color: #E8EDDF;
+    border-radius: 25px;
+    padding: 15px;
+    overflow: hidden;
+    display: block;
+}
+
+.manipulation {
+    position: fixed;
+    height: 240px;
+    width: 95.5%;
+    top: 590px;
+    left: 1%;
+    font-size: 20px;
+    border: 5px solid #698C7A;
+    background-color: #E8EDDF;
+    border-radius: 25px;
+    padding: 15px;
+    overflow: hidden;
     display: block;
 }
