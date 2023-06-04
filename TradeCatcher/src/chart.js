@@ -1,6 +1,6 @@
 var chart = LightweightCharts.createChart(document.getElementById('volumeChart'), {
-	width: 800,
-  height: 400,
+	width: 900,
+ 	height: 400,
 	layout: {
 		background: {
             type: 'solid',

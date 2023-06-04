@@ -54,12 +54,27 @@ h1 {
     display: block;
 }
 
-.manipulation {
+.manipulation .manipulation_box {
     position: fixed;
-    height: 240px;
-    width: 95.5%;
+    height: 320px;
+    width: 46%;
     top: 590px;
     left: 1%;
+    font-size: 20px;
+    border: 5px solid #698C7A;
+    background-color: #E8EDDF;
+    border-radius: 25px;
+    padding: 15px;
+    overflow: hidden;
+    display: block;
+}
+
+.manipulation .manipulation_chance {
+    position: fixed;
+    height: 320px;
+    width: 46%;
+    top: 590px;
+    right: 1%;
     font-size: 20px;
     border: 5px solid #698C7A;
     background-color: #E8EDDF;

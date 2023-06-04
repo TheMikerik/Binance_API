@@ -1,5 +1,6 @@
 <html>
     <head>
+        <link rel="icon" href="images/icon.png">
         <title>Coinview</title>
         <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
         <link rel="stylesheet" href="styles.css">
@@ -20,58 +21,18 @@
         </section>
 
         <section class="manipulation" id="manipulation">
-            <div id="mainp_box" class="mainp_box">
-                Manipulation:
+            <div id="manipulation_box" class="manipulation_box">
+                <h3>Manipulation:</h3>
+            </div>
+            <div id="manipulation_chance" class="manipulation_chance">
+                <h3>Manipulation percentage in each block:</h3>
+                <div>
+                    NONE - Block NONE had NONE similar trades
+                </div>
             </div>
         </section>
 
-        <script>
-            var binanceSocket = new WebSocket("wss://stream.binance.com:9443/ws/btcusdt@trade");
-            var trades = document.getElementById('tradeDiv');
-            var allTradeCounter = document.getElementById('allTradeCounter');
-            var allTradeCount = 0;
-            var catchedTradesCounter = document.getElementById('catchedTradeCounter');
-            var catchedTradeCount = 0;
-            var biggestTrade = document.getElementById('biggestTrade');
-            var biggestTradeFloat = 0;
-            var curretnPrice = document.getElementById('currentPrice');
-            var curPrice = 0;
-            var tradeLog = document.getElementById('tradeDiv');
-            var maxTradeLogs = 10;
-            var tradeLogEntries = [];
-
-            binanceSocket.onmessage = function(out) {
-            var messages = JSON.parse(out.data);
-            var volume = parseFloat(messages.q);
-            var curPrice = parseFloat(messages.p).toFixed(2);
-
-            if (volume > biggestTradeFloat) {
-                biggestTradeFloat = volume;
-                biggestTrade.textContent = "Biggest opened: " + biggestTradeFloat + "btc";
-            }
-            if (volume > 0.5) {
-                if (tradeLogEntries.length >= maxTradeLogs) {
-                tradeLogEntries.shift();
-                }
-                var tradeEntry = messages.q + " BTC trade has been opened on the price of " + curPrice + "$ with unique ID: " + allTradeCount;
-                tradeLogEntries.push(tradeEntry);
-
-                tradeLog.innerHTML = "<br>";
-
-                for (var i = tradeLogEntries.length - 1; i >= 0; i--) {
-                var tradeLogEntry = tradeLogEntries[i];
-                var tradeLogItem = document.createElement("div");
-                tradeLogItem.textContent = tradeLogEntry;
-                tradeLog.prepend(tradeLogItem);
-                }
-
-                catchedTradeCount++;
-                catchedTradesCounter.textContent = "Catched trades: " + catchedTradeCount;
-            }
-            allTradeCount++;
-            allTradeCounter.textContent = "Recived trades: " + allTradeCount;
-            };
-        </script>
-        <script src="chart.js"></script>
+        <script src="src/trade_catcher.js"></script>
+        <script src="src/chart.js"></script>
     </body>
 </html>
