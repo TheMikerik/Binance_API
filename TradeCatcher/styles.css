@@ -12,6 +12,12 @@ h1 {
     color: #698C7A;
     font-size: 45px;
 }
+.infoBar h2{
+    margin-top: 15px;
+}
+.infoBar h3{
+    margin-top: -20px;
+}
 .VolumeChart{
     position: fixed;
     height: 400px;

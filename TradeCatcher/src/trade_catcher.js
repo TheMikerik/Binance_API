@@ -33,7 +33,7 @@ class Block{
         this.manipPerc = manipPerc;
 
         this.logger = this.manipPerc + "% - Block " + this.id
-                    + " with " + this.similarTr + "/"
+                    + " has " + this.similarTr + "/"
                     + block_size + " potential manipulation attempts.";
     }
 }
@@ -102,19 +102,19 @@ binanceSocket.onmessage = function(out) {
             var manipulationLogEntry = manipulationLogEntries[i].logger;
             var manipulationLogItem = document.createElement("div");
 
-            if ( manipulationLogEntries[i].manipPerc > 0 && manipulationLogEntries[i].manipPerc <= 15.00 ){
+            if ( manipulationLogEntries[i].manipPerc > 0 && manipulationLogEntries[i].manipPerc <= 10.00 ){
                 var highligh_low_prob = document.createElement("span");
                 highligh_low_prob.textContent = manipulationLogEntry + " Negligible similarity.";
                 highligh_low_prob.classList.add("highlight_low");
                 manipulationLogItem.appendChild(highligh_low_prob);
             }
-            else if ( manipulationLogEntries[i].manipPerc > 15.00 && manipulationLogEntries[i].manipPerc <= 45.00 ){
+            else if ( manipulationLogEntries[i].manipPerc > 10.00 && manipulationLogEntries[i].manipPerc <= 45.00 ){
                 var highligh_mid_prob = document.createElement("span");
                 highligh_mid_prob.textContent = manipulationLogEntry + " Suspicious.";
                 highligh_mid_prob.classList.add("highlight_mid");
                 manipulationLogItem.appendChild(highligh_mid_prob);
             }
-            else if ( manipulationLogEntries[i].manipPerc > 45.00 && manipulationLogEntries[i].manipPerc <= 80.00 ){
+            else if ( manipulationLogEntries[i].manipPerc > 45.00 ){
                 var highligh_high_prob = document.createElement("span");
                 highligh_high_prob.textContent = manipulationLogEntry + " Manipulation alert!";
                 highligh_high_prob.classList.add("highlight_high");
