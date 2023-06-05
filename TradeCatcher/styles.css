@@ -11,7 +11,7 @@ h1 {
     transform: translate(-50%);
     color: #698C7A;
     font-size: 45px;
-  }
+}
 .VolumeChart{
     position: fixed;
     height: 400px;
@@ -82,4 +82,7 @@ h1 {
     padding: 15px;
     overflow: hidden;
     display: block;
+}
+.manipulation .highlight_low{
+    color: red;
 }
