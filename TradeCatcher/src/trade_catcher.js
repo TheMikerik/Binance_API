@@ -16,30 +16,23 @@ var tradeLogEntries = [];
 
 /* Manipulation part */
 var manipulation_HTML = document.getElementById('manipulation_chance');
-var max_manip_log = 11;
 var manipulation_entities = [];
 var similar_trades = 0;
 var block_id = 0;
 var manipulation_percentage = 1;
 var manipulationLogEntries = [];
-var block_size = 10;
 var manipulationLog = document.getElementById('manipulation_text');
 
+const max_manip_log = 11;
+const block_size = 75;
 
-class Catcher{
-    constructor(input, vol, price){
-        this.messages = input;
-        this.volume = vol;
-        this.current_price = price;
-    }
-}
 class Block{
     constructor(id, similar, manipPerc){
         this.id = id;
         this.similarTr = similar;
         this.manipPerc = manipPerc;
 
-        this.log = this.manipPerc + "% - Block " + this.id
+        this.logger = this.manipPerc + "% - Block " + this.id
                     + " with " + this.similarTr + "/"
                     + block_size + " potential manipulation attempts.";
     }
@@ -94,27 +87,38 @@ binanceSocket.onmessage = function(out) {
 
         var similar_trades_in_block = similar_trades/block_size;
         manipulation_percentage = parseFloat((similar_trades_in_block)*100).toFixed(2);
+
+        var block = new Block(block_id, similar_trades, manipulation_percentage);
+
         if(manipulationLogEntries.length >= max_manip_log){
             manipulationLogEntries.shift();
         }
-        var manipulationEntry = manipulation_percentage
-                                + "% - Block " + block_id
-                                + " with " + similar_trades
-                                + "/" + block_size
-                                + " potential manipulation attempts."
-        manipulationLogEntries.push(manipulationEntry);
+        
+        manipulationLogEntries.push(block);
 
         manipulationLog.innerHTML = "<br>";
 
         for (var i=manipulationLogEntries.length-1; i>=0; i--){
-            var manipulationLogEntry = manipulationLogEntries[i];
+            var manipulationLogEntry = manipulationLogEntries[i].logger;
             var manipulationLogItem = document.createElement("div");
 
-            if (i === manipulationLogEntries.length - 1 && similar_trades_in_block !==0){
+            if ( manipulationLogEntries[i].manipPerc > 0 && manipulationLogEntries[i].manipPerc <= 15.00 ){
                 var highligh_low_prob = document.createElement("span");
-                highligh_low_prob.textContent = manipulationLogEntry;
+                highligh_low_prob.textContent = manipulationLogEntry + " Negligible similarity.";
                 highligh_low_prob.classList.add("highlight_low");
                 manipulationLogItem.appendChild(highligh_low_prob);
+            }
+            else if ( manipulationLogEntries[i].manipPerc > 15.00 && manipulationLogEntries[i].manipPerc <= 45.00 ){
+                var highligh_mid_prob = document.createElement("span");
+                highligh_mid_prob.textContent = manipulationLogEntry + " Suspicious.";
+                highligh_mid_prob.classList.add("highlight_mid");
+                manipulationLogItem.appendChild(highligh_mid_prob);
+            }
+            else if ( manipulationLogEntries[i].manipPerc > 45.00 && manipulationLogEntries[i].manipPerc <= 80.00 ){
+                var highligh_high_prob = document.createElement("span");
+                highligh_high_prob.textContent = manipulationLogEntry + " Manipulation alert!";
+                highligh_high_prob.classList.add("highlight_high");
+                manipulationLogItem.appendChild(highligh_high_prob);
             }
             else {
                 manipulationLogItem.textContent = manipulationLogEntry;

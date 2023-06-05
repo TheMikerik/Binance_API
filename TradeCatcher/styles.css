@@ -84,5 +84,11 @@ h1 {
     display: block;
 }
 .manipulation .highlight_low{
-    color: red;
+    color: rgb(10, 140, 30);
+}
+.manipulation .highlight_mid{
+    color: rgb(20, 20, 200);
+}
+.manipulation .highlight_high{
+    color: rgb(255, 0, 0);
 }
