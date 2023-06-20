@@ -84,6 +84,9 @@ binanceSocket.onmessage = function(out) {
                 similar_trades++;
             }
         }
+        if (similar_trades !== 0){
+            similar_trades++;
+        }
 
         var similar_trades_in_block = similar_trades/block_size;
         manipulation_percentage = parseFloat((similar_trades_in_block)*100).toFixed(2);
